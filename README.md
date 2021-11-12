@@ -1,3 +1,14 @@
+## live page: [ on live ](https://react-movieserie-app.netlify.app)
+
+* projenin api kaynagi imdb-api.com. apiyle ilgili işlemler services klasörü altından yapılmakta.
+* moviecontext ile diğer componentlere veriler context ile gönderilmekte.
+* sayfa yönlendirmeleri react-router-dom ile yapıldı.
+* tasarım tailwindcss ile yazıldı.
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
