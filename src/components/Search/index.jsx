@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { useMovie } from '../../context/MovieContext'
-import MovieService from '../../services/movieService'
-import { Spin } from 'antd';
-import SearchBar from '../SearchBar'
+
+import SearchBar from '../Searchbar'
 
 
 function Search() {
@@ -19,7 +18,7 @@ function Search() {
 
     useEffect(() => {
         setLoading(true)
-        let movieService = new MovieService()
+        // let movieService = new MovieService()
         // movieService.searchTitleByType(searchType, title).then(response => {
         //     if (response.data.errorMessage) {
         //         console.log(response.data.errorMessage);
@@ -27,25 +26,25 @@ function Search() {
         //     setLoading(false)
         //     setsearchData(response.data.results)
         // })
-        movieService.searchTitle( title).then(response => {
-            if (response.data.errorMessage) {
-                console.log(response.data.errorMessage);
-            }
-            setLoading(false)
-            setsearchData(response.data.results)
-        })
+        // movieService.searchTitle(title).then(response => {
+        //     if (response.data.errorMessage) {
+        //         console.log(response.data.errorMessage);
+        //     }
+        //     setLoading(false)
+        //     setsearchData(response.data.results)
+        // })
     }, [title])
     console.log(searchData);
     return (
         <>
-        <SearchBar type="SearchMovie"/>
+            <SearchBar type="SearchMovie" />
 
             {
-                loading === true ? <Spin /> :
-                    searchData?.length === 0 ? 
-                    <div className="flex justify-center bg-red-100 rounded mt-3 mx-3 py-2"><h3 className="text-black font-normal">"{title}" not found!</h3></div> 
-                    
-                    :
+                loading === true ? <>loading</> :
+                    searchData?.length === 0 ?
+                        <div className="flex justify-center bg-red-100 rounded mt-3 mx-3 py-2"><h3 className="text-black font-normal">"{title}" not found!</h3></div>
+
+                        :
                         <div className="container grid gap-3 grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 py-2">
 
                             {

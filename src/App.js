@@ -1,33 +1,34 @@
-
-import './App.css';
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
-import Movies from './components/Movies';
-import Series from './components/Series';
-import Nav from './components/Nav';
-import Home from './components/Home';
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+// } from "react-router-dom";
 
-import 'antd/dist/antd.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// components
+import Nav from './components/Header';
+import Home from './pages/Home';
 
 import { MovieProvider } from './context/MovieContext';
-import ComingSoon from './components/ComingSoon';
+import ComingSoon from './pages/ComingSoon';
 
 import Search from './components/Search';
 import Footer from './components/Footer';
 import ScrollUpButton from './components/ScrollUpButton';
-import MovieOrSerieDetail from './components/MovieOrSerieDetails';
+
+// pages
+import Detail from "./pages/Detail";
+import Movies from "./pages/Movies";
+import Series from "./pages/Series";
+
+import Routes from "./routes";
 
 function App() {
   return (
-    <MovieProvider>
-      <Router>
+    <>
+      {/* <Router>
         <div className="">
-          
+
           <Nav />
           <main className="" >
             <Switch>
@@ -36,14 +37,17 @@ function App() {
               <Route path="/series/top250series" component={Series}></Route>
               <Route path="/comingsoon" component={ComingSoon}></Route>
               <Route path="/search/:title" component={Search}></Route>
-              <Route path="/detail/:id" component={MovieOrSerieDetail}></Route>
+              <Route path="/detail/:id" component={Detail}></Route>
             </Switch>
             <ScrollUpButton />
           </main>
           <Footer />
         </div>
-      </Router>
-    </MovieProvider>
+      </Router> */}
+      <Routes />
+    </>
+
+
   );
 }
 
