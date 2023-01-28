@@ -7,3 +7,9 @@ body{
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities{
+  .left-640{
+    left:720px
+  }
+}

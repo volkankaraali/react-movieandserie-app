@@ -82,7 +82,7 @@ function Header() {
 
             {
                 isMobileMenuOpen && <div className='mobile-menu sm:hidden px-4 pb-4'>
-                    <ul className='flex nav-menu flex flex-col bg-gray-100 dark:bg-black dark:text-white '>
+                    <ul className='flex nav-menu flex-col bg-gray-100 dark:bg-black dark:text-white '>
                         <NavLink
                             to="/movies"
                             className={activeClassHandle}

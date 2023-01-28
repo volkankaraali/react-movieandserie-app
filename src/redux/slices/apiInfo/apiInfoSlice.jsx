@@ -2,9 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getApiInfo } from "../../extraReducers";
 
 const initialState = {
-  errorMessage: "",
   count: "",
+  errorMessage: "",
   maximum: "",
+  apiError: "",
+  overRequest: false,
 }
 
 export const apiInfoSlice = createSlice({
@@ -12,12 +14,16 @@ export const apiInfoSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // top 250 movies
+    // api info
     builder.addCase(getApiInfo.fulfilled, (state, action) => {
-      state.errorMessage = action.payload;
+      const { count, errorMessage, maximum } = action.payload;
+      state.count = count;
+      state.errorMessage = errorMessage;
+      state.maximum = maximum;
+      if (count > maximum) state.overRequest = true;
     })
     builder.addCase(getApiInfo.rejected, (state, action) => {
-      state.errorMesTop250Movies = action.payload;
+      state.apiError = action.payload;
     })
 
   }

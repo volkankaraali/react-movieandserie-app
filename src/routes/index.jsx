@@ -10,6 +10,7 @@ import Home from '../pages/Home';
 import Movies from '../pages/Movies';
 import ComingSoon from '../pages/ComingSoon';
 import Series from '../pages/Series';
+import Detail from '../pages/Detail';
 
 export default function Routes() {
   return (
@@ -31,7 +32,7 @@ export default function Routes() {
 
         <Route path='coming-soon' element={<ComingSoon />} />
 
-        <Route path='detail/:slug' element={<div>detail</div>} />
+        <Route path='detail/:slug' element={<Detail />} />
       </Route>
     </RRDRoutes>
   )

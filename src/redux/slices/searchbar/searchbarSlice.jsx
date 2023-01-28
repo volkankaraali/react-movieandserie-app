@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   inputText: "",
+  suggetions: [],
+  loading: false,
 }
 
 export const searchbarSlice = createSlice({

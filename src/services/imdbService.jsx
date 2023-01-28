@@ -30,13 +30,35 @@ export const imdbApiService = {
     },
     theathers: {
         getAll: () => {
-            let apiUrl = `${baseUrl}/Usage/${process.env.REACT_APP_IMDB_API_KEY}`
+            let apiUrl = `${baseUrl}/InTheaters/${process.env.REACT_APP_IMDB_API_KEY}`
             return axios.get(apiUrl)
         }
     },
     usage: {
         getUsage: () => {
-            let apiUrl = `https://imdb-api.com/API/InTheaters/${process.env.REACT_APP_IMDB_API_KEY}`
+            let apiUrl = `https://imdb-api.com/API/Usage/${process.env.REACT_APP_IMDB_API_KEY}`
+            return axios.get(apiUrl)
+        }
+    },
+    search: {
+        all: (expression) => {
+            let apiUrl = `${baseUrl}/SearchAll/${process.env.REACT_APP_IMDB_API_KEY}/${expression}`
+            return axios.get(apiUrl)
+        },
+        title: (expression) => {
+            let apiUrl = `${baseUrl}/SearchTitle/${process.env.REACT_APP_IMDB_API_KEY}/${expression}`
+            return axios.get(apiUrl)
+        },
+        id: (expression) => {
+            let apiUrl = `${baseUrl}/Title/${process.env.REACT_APP_IMDB_API_KEY}/${expression}`
+            return axios.get(apiUrl)
+        },
+        movie: (expression) => {
+            let apiUrl = `${baseUrl}/SearchMovie/${process.env.REACT_APP_IMDB_API_KEY}/${expression}`
+            return axios.get(apiUrl)
+        },
+        serie: (expression) => {
+            let apiUrl = `${baseUrl}/SearchSerie/${process.env.REACT_APP_IMDB_API_KEY}/${expression}`
             return axios.get(apiUrl)
         }
     }
