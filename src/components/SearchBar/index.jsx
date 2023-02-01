@@ -49,7 +49,6 @@ function Searchbar() {
         }
     }
 
-    console.log(suggestionsData)
     document.addEventListener('mousedown', closeSuggestionsModal)
 
     return (
@@ -85,34 +84,6 @@ function Searchbar() {
                     }
                 </div>
             </div>
-            {/* <div className="flex content-center justify-center mb-2 dark:bg-gray-800">
-                <div className="mt-2 relative">
-                    <form className="flex flex-col sm:flex-row" onSubmit={handleSubmit}>
-                        <input value={input} onChange={onChangeHandler} className="border border-gray-100 outline-none focus:ring-1 focus:ring-yellow-600 rounded px-2 w-80 h-8 mr-1 mb-1 sm:mb-0 dark:border-yellow-500 bg-gray-100" type="text" placeholder="Search Movie Or Serie" />
-                        <button className="px-5 py-1 h-8 rounded-md transition duration-500 ease-in-out border border-gray-100 text-yellow-500 font-bold hover:bg-yellow-500 hover:text-white dark:border-yellow-500" >Find!</button>
-                    </form>
-                    {
-                        suggestionsModal && <div className='absolute h-52 overflow-auto top-9 w-80 bg-gray-100 dark:bg-gray-800 border border-yellow-500 p-2 rounded z-10'>
-                            {
-                                loading ?
-                                    <LoadingIcon />
-                                    : <ul className='dark:text-white'>
-                                        {
-                                            suggestionsData.lenght === 0
-                                                ? <li className='text-red-500 m-1 '>Upps! No suggestion.</li>
-                                                : suggestionsData.map(item => (
-                                                    <li key={item.id} onClick={() => handleClicked()} className='hover:text-yellow-500 cursor-pointer m-1'>{item.title}</li>
-                                                ))
-                                        }
-
-                                    </ul>
-                            }
-
-                        </div>
-                    }
-
-                </div>
-            </div> */}
         </>
     )
 }

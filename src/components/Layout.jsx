@@ -19,10 +19,9 @@ export default function Layout() {
 
   return (
     <>
-      {overRequest && <div className='bg-red-200 text-red-600 h-10 flex justify-center items-center'>Api request is over. Please try later. ({count}/{maximum}) </div>}
+      {overRequest && <div className='bg-red-200 text-red-600 h-16 p-3 flex font-bold justify-center items-center '>Api request is over. Please try later. ({count}/{maximum}) </div>}
       <Header />
       <Outlet />
-      <hr className='border-gray-300 dark:border-yellow-500' />
       <Footer />
     </>
   )

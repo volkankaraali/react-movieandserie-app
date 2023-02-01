@@ -1,9 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router'
-import { Link } from 'react-router-dom'
+// libraries
+import React, { useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router';
+import numeral from "numeral"
+import ReactCountryFlag from 'react-country-flag';
+import { useNavigate } from "react-router-dom";
+
+// api service
 import { imdbApiService } from '../../services/imdbService';
 
+// components
+import Card from '../../components/Card';
+import { Skeleton } from '@mui/material';
+
 function Detail() {
+    const navigate = useNavigate();
     const { slug } = useParams()
     const { state } = useLocation();
 
@@ -11,7 +21,11 @@ function Detail() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
-    // make request with title prop. 
+
+    useEffect(() => {
+        if (!state?.id) navigate('/')
+    }, [state])
+
 
     console.log(slug)
     console.log(state)
@@ -26,80 +40,125 @@ function Detail() {
 
     }, [state])
 
-    console.log(data)
-    // return (
-    //     <>
-    //         <div className="mt-24 p-5">
-
-    //             <div className="grid grid-cols-1 sm:grid-cols-12 shadow-xl" >
-    //                 <div className="sm:col-span-4">
-    //                     <img className="w-full  object-full " src={data.image} alt={data.fullTitle} />
-    //                 </div>
-    //                 <div className="sm:col-span-8 px-5 py-2">
-    //                     <h3 className=""> {data.fullTitle} </h3>
-    //                     <p className="text-sm font-bold text-yellow-500">Imdb Rating {data.imDbRating}</p>
-    //                     <p className="tracking-wide">{data.plot}</p>
-    //                     <h6 className="">Director: <span className="text-sm font-bold text-yellow-500">{data.directors}</span></h6>
-    //                     <h6>Duration: <span className="text-sm font-bold text-yellow-500">{data.runtimeStr}</span></h6>
-    //                     <h6 className="">
-    //                         Stars: <span className="text-sm font-bold text-yellow-500" >{data.stars} </span>
-    //                     </h6>
-
-    //                     <h6 className="">
-    //                         Countries: <span className="text-sm font-bold text-yellow-500" >{data.countries} </span>
-    //                     </h6>
-
-    //                     <h6 className="">
-    //                         Languages: <span className="text-sm font-bold text-yellow-500" >{data.languages} </span>
-    //                     </h6>
-
-    //                     <div className="">
-    //                         {
-    //                             (data.genreList || []).map((e, i) => (
-
-    //                                 <span key={i} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{e.key}</span>
-    //                             ))
-    //                         }
-
-    //                     </div>
-    //                 </div>
-    //             </div>
-
-
-
-    //         </div>
-    //         <hr />
-    //         <h3 className="text-center">Similars</h3>
-    //         <div className="container p-3 grid grid-cols-1 sm:grid-cols-3 gap-3">
-    //             {
-    //                 (data.similars || []).map((e, i) => (
-    //                     <div className="grid grid-cols-2 sm:grid-cols-12 shadow-xl" >
-    //                         <div className="sm:col-span-4">
-    //                             <img className="w-32 h-full  object-full " src={e.image} alt={e.fullTitle} />
-    //                         </div>
-    //                         <div className="sm:col-span-8 px-3 py-2">
-    //                             <h3 className=""> {e.fullTitle} </h3>
-    //                             <div className="flex justify-center my-3">
-    //                                 <Link to={`/detail/${e.id}`} exact className=""> <button className="inline-block bg-yellow-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">Details</button></Link>
-
-    //                             </div>
-    //                         </div>
-
-    //                     </div>
-    //                 ))
-    //             }
-    //         </div>
-
-    //     </>
-    // )
-
     return (
-        <div className='detail'>
-            <div className="container mx-auto p-4">
-                <img className='w-4/12' src={data?.image} alt="" />
-                {slug}
-                {state?.id}
+        <div className="detail-content dark:bg-gray-800 ">
+            <div className='container mx-auto flex flex-col space-y-5 pt-10'>
+                <div className="detail-card flex flex-col lg:flex-row">
+                    <img className='w-full h-96 lg:w-1/4 lg:h-full lg:rounded' src={data.image} alt={data.title} loading='lazy' />
+                    <div className='detail-content-main p-3 flex flex-col space-y-5 lg:flex-row '>
+                        <div className='detail-content flex flex-col space-y-4 lg:px-5'>
+                            <div className='details flex flex-row items-center justify-between'>
+                                <h2 className='font-bold lg:text-2xl dark:text-white'>{data.fullTitle || "Harry Potter and the Sorcerer's Stone (2001)"}</h2>
+                                <div className="rank h-10 px-2 rounded bg-yellow-500 flex flex-col items-center justify-center">
+                                    <div className='font-bold'>{data.imDbRating || "-"}</div>
+                                    <div className='text-xs'>{numeral(data.imDbRatingVotes).format('0.0a') || "-"}</div>
+                                </div>
+                            </div>
+
+                            <div className='genres flex flex-wrap mb-3'>
+                                {
+                                    data.genreList?.map(item => (<div className='border text-yellow-500 text-sm border-yellow-500 px-2 mr-1 mb-1 rounded'>{item.value}</div>
+                                    ))
+                                }
+                            </div>
+
+                            <div className='plot text-xl  dark:text-white'>{data.plot || "-"}</div>
+
+                            <div className='directors flex flex-col'>
+                                <div className='font-bold mb-2 dark:text-white border-b-2 border-yellow-500'>DIRECTORS</div>
+                                <div className='flex flex-col sm:flex-row sm:flex-wrap lg:flex-col space-y-1 '>
+                                    {
+                                        data.directorList?.map(item => (
+                                            <div className='flex items-center'>
+                                                {/* <img className='w-16 h-16 rounded-lg mr-1' src="https://picsum.photos/200/300" alt="" /> */}
+                                                <div className='flex flex-wrap'>
+                                                    <div className='font-bold text-sm lg:text-base dark:text-gray-300'>{item.name}</div>
+                                                </div>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+
+
+                            </div>
+
+                            <div className='casts flex flex-col'>
+                                <h2 className='font-bold mb-2 dark:text-white border-b-2 border-yellow-500'>CASTS</h2>
+                                <div className='flex flex-col sm:flex-row sm:flex-wrap lg:flex-col space-y-1 '>
+                                    {
+                                        data.starList?.map(item => (
+                                            <div className='flex items-center sm:mr-3'>
+                                                {/* <img className='w-16 h-16 rounded-lg mr-1 mb-2' src="https://picsum.photos/200/300" alt="" /> */}
+                                                <div className=''>
+                                                    <div className='font-bold text-sm lg:text-base dark:text-gray-300'>{item.name}</div>
+                                                </div>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            </div>
+                            <div className='awards'>
+                                <h2 className='font-bold mb-2 dark:text-white border-b-2 border-yellow-500'>AWARDS</h2>
+                                <div className='font-bold ark:text-white dark:text-gray-300'>{data.awards}</div>
+
+                            </div>
+
+                        </div>
+                        <div className="properties lg:pt-20">
+                            <div className='font-bold mb-2 dark:text-white border-b-2 border-yellow-500'>Properties</div>
+                            <div className='space-y-1'>
+                                <div className='properties-card'>
+                                    <div className='text-gray-500 dark:text-gray-400'>Countries</div>
+                                    <div>
+
+                                    </div>
+                                    {
+                                        data.countryList?.map(item => (<div className='dark:text-gray-200'>{item.value} <ReactCountryFlag svg countryCode={item.value} /></div>))
+                                    }
+
+                                </div>
+                                <div className='properties-card'>
+                                    <div className='text-gray-500 dark:text-gray-400'>Languages</div>
+                                    {data.languageList?.map(item => <div className='dark:text-gray-200'>{item.value}</div>)}
+                                </div>
+                                <div className='properties-card'>
+                                    <div className='text-gray-500 dark:text-gray-400'>Year</div>
+                                    <div className='dark:text-gray-200'>{data.year}</div>
+                                </div>
+                                <div className='properties-card'>
+                                    <div className='text-gray-500 dark:text-gray-400'>Release Date</div>
+                                    <div className='dark:text-gray-200'>{data.releaseDate}</div>
+                                </div>
+                                <div className='properties-card'>
+                                    <div className='text-gray-500 dark:text-gray-400'>Cumulative Worldwide Gross</div>
+                                    <div className='dark:text-gray-200'>{data.boxOffice?.cumulativeWorldwideGross}</div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div className="similars p-3 lg:px-0 lg:py-3">
+                    <div className='font-bold mb-2 lg:text-2xl dark:text-white border-b-2 border-yellow-500'>Similars</div>
+                    <div className="grid grid-cols-1 place-items-center lg:place-items-stretch gap-2 lg:gap-3 sm:grid-cols-3 lg:grid-cols-5">
+                        {
+                            loading ? (
+                                <>
+                                    <Skeleton variant="rounded" width={220} height={300} />
+                                    <Skeleton variant="rounded" width={220} height={300} />
+                                    <Skeleton variant="rounded" width={220} height={300} />
+                                    <Skeleton variant="rounded" width={220} height={300} />
+                                    <Skeleton variant="rounded" width={220} height={300} />
+                                </>
+
+                            )
+                                : data.similars?.map(item => <Card key={item.id} item={item} />)
+                        }
+                    </div>
+                </div>
             </div>
+
         </div>
     )
 }
