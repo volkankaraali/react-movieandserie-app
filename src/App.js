@@ -1,29 +1,27 @@
-import React from "react";
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-// } from "react-router-dom";
+// libraries
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
-// components
-import Nav from './components/Header';
-import Home from './pages/Home';
-
-import { MovieProvider } from './context/MovieContext';
-import ComingSoon from './pages/ComingSoon';
-
-import Search from './components/Search';
-import Footer from './components/Footer';
-import ScrollUpButton from './components/ScrollUpButton';
-
-// pages
-import Detail from "./pages/Detail";
-import Movies from "./pages/Movies";
-import Series from "./pages/Series";
-
+// routes
 import Routes from "./routes";
 
+// async thunks
+import { getComingSoon, getMostPopularMovies, getMostPopularSeries, getTop250Movies, getTop250Series } from "./redux/extraReducers";
+
+
 function App() {
+
+  // asyncThunk calls
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // dispatch(getTop250Movies())
+    // dispatch(getMostPopularMovies())
+    // dispatch(getComingSoon())
+    // dispatch(getTop250Series())
+    // dispatch(getMostPopularSeries())
+  }, [])
+
   return (
     <>
       {/* <Router>

@@ -33,6 +33,8 @@ export default function Routes() {
         <Route path='coming-soon' element={<ComingSoon />} />
 
         <Route path='detail/:slug' element={<Detail />} />
+
+        <Route path='*' element={<div>no found</div>} />
       </Route>
     </RRDRoutes>
   )

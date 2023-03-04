@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getComingSoon, getMostPopularMovies, getTop250Movies } from "../../extraReducers";
 
-
-
 const initialState = {
   top250Movies: [],
   mostPopularMovies: [],
@@ -16,7 +14,6 @@ const initialState = {
   errorMesMostPopularMovies: "",
   errorMesComingSoonMovies: "",
 }
-
 
 export const moviesSlice = createSlice({
   name: "movies",
@@ -65,6 +62,5 @@ export const moviesSlice = createSlice({
     })
   }
 })
-
 
 export default moviesSlice.reducer;

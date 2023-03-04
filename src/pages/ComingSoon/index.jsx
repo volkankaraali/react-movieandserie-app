@@ -6,44 +6,44 @@ import './style.css'
 
 function ComingSoon() {
 
-    const { comingSoon } = useMovie();
+    // const { comingSoon } = useMovie();
     const [pageNumber, setPageNumber] = useState(0)
 
     const moviesPerPage = 10;
     const pageVisited = pageNumber * moviesPerPage;
 
-    console.log(comingSoon);
-    const displayComingSoon = comingSoon.slice(pageVisited, pageVisited + moviesPerPage).map((movie, i) => (
-        <div key={i} className="max-w-xs rounded bg-white overflow-hidden shadow-md mx-auto">
-            <img className="w-full" src={movie.image} alt="Sunset in the mountains" />
-            <div className="px-6 py-4">
-                <div className="font-bold text-yellow-500 text-sm mb-2">Release in {movie.releaseState}</div>
-                <div className="font-bold text-black text-xl mb-2">{movie.title}</div>
-                <p className="text-gray-700 text-base h-full">
-                    {movie.plot}
-                </p>
+    // console.log(comingSoon);
+    // const displayComingSoon = comingSoon.slice(pageVisited, pageVisited + moviesPerPage).map((movie, i) => (
+    //     <div key={i} className="max-w-xs rounded bg-white overflow-hidden shadow-md mx-auto">
+    //         <img className="w-full" src={movie.image} alt="Sunset in the mountains" />
+    //         <div className="px-6 py-4">
+    //             <div className="font-bold text-yellow-500 text-sm mb-2">Release in {movie.releaseState}</div>
+    //             <div className="font-bold text-black text-xl mb-2">{movie.title}</div>
+    //             <p className="text-gray-700 text-base h-full">
+    //                 {movie.plot}
+    //             </p>
 
-                <Link to={`movie/${movie.id}`} className="no-underline">
-                    <button className="border-1 border-yellow-500 duration-300 hover:bg-yellow-500 hover:text-white w-full mt-3 rounded text-yellow-500 font-bold">Details</button>
-                </Link>
-            </div>
-            <div className="px-2 pt-2 pb-2">
-                {
-                    movie.genreList.map((e, i) => (
-                        <span key={i} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{e.key}</span>
+    //             <Link to={`movie/${movie.id}`} className="no-underline">
+    //                 <button className="border-1 border-yellow-500 duration-300 hover:bg-yellow-500 hover:text-white w-full mt-3 rounded text-yellow-500 font-bold">Details</button>
+    //             </Link>
+    //         </div>
+    //         <div className="px-2 pt-2 pb-2">
+    //             {
+    //                 movie.genreList.map((e, i) => (
+    //                     <span key={i} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{e.key}</span>
 
-                    ))
-                }
+    //                 ))
+    //             }
 
-            </div>
-        </div>
-    ))
+    //         </div>
+    //     </div>
+    // ))
 
-    const pageCount = Math.ceil(comingSoon.length / moviesPerPage);
+    // const pageCount = Math.ceil(comingSoon.length / moviesPerPage);
 
-    const changePage = ({ selected }) => {
-        setPageNumber(selected);
-    };
+    // const changePage = ({ selected }) => {
+    //     setPageNumber(selected);
+    // };
 
 
     return (
@@ -78,12 +78,12 @@ function ComingSoon() {
                 ))
             } */}
 
-                {
+                {/* {
                     displayComingSoon
-                }
+                } */}
             </div>
 
-            <ReactPaginate
+            {/* <ReactPaginate
                 className="paginationMain flex flex-row container justify-center"
 
                 previousLabel={"Previous"}
@@ -98,7 +98,7 @@ function ComingSoon() {
                 disabledClassName={"paginationDisabled"}
                 activeClassName={"activeLi"}
                 activeLinkClassName={"activeA"}
-            />
+            /> */}
         </>
 
     )
