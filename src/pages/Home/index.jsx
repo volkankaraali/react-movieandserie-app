@@ -1,7 +1,8 @@
 // libraries
 import React from 'react';
-import Searchbar from '../../components/Searchbar';
 import HomeSection from '../../sections/Home/HomeSection';
+
+import Searchbar from "../../components/Searchbar";
 
 // redux 
 import { useSelector } from 'react-redux';
