@@ -20,11 +20,11 @@ function Home() {
             <div className='dark:bg-gray-800 px-5 py-10 '>
                 <Searchbar />
                 <div className='main py-12'>
-                    <HomeSection sectionTitle="Coming Soon" sectionName="comingsoon" data={comingSoonMovies} loading={loadingComingSoonMovies} />
-                    <HomeSection sectionTitle="Most Popular Movies" sectionName="mostpopularmovies" data={mostPopularMovies} loading={loadingMostPopularMovies} />
-                    <HomeSection sectionTitle="Most Popular Series" sectionName="mostpopularseries" data={mostPopularSeries} loading={loadingMostPopularSeries} />
-                    <HomeSection sectionTitle="Top 250 Movies" sectionName="top250movies" data={top250Movies} loading={loadingTop250Movies} />
-                    <HomeSection sectionTitle="Top 250 Series" sectionName="top250series" data={top250Series} loading={loadingTop250Series} />
+                    <HomeSection sectionTitle="Coming Soon" sectionName="comingsoon" data={comingSoonMovies} loading={loadingComingSoonMovies} to='/coming-soon' />
+                    <HomeSection sectionTitle="Most Popular Movies" sectionName="mostpopularmovies" data={mostPopularMovies} loading={loadingMostPopularMovies} to='/movies' linkState={{ tab: 1 }} />
+                    <HomeSection sectionTitle="Most Popular Series" sectionName="mostpopularseries" data={mostPopularSeries} loading={loadingMostPopularSeries} to='/series' linkState={{ tab: 1 }} />
+                    <HomeSection sectionTitle="Top 250 Movies" sectionName="top250movies" data={top250Movies} loading={loadingTop250Movies} to='/movies' linkState={{ tab: 2 }} />
+                    <HomeSection sectionTitle="Top 250 Series" sectionName="top250series" data={top250Series} loading={loadingTop250Series} to='/series' linkState={{ tab: 2 }} />
                 </div>
 
             </div>

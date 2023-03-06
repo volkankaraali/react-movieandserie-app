@@ -4,13 +4,14 @@ import React from 'react';
 // icons
 import { IoMdArrowDropright } from "react-icons/io";
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Card from '../../../components/Card';
 
 // mock data
 import { MOCK_DATA } from '../../../mocks';
 
 
-export default function HomeSection({ sectionTitle, sectionName, data, loading }) {
+export default function HomeSection({ sectionTitle, sectionName, data, loading, to, linkState }) {
 
   const { overRequest } = useSelector(state => state.apiInfo)
 
@@ -40,9 +41,9 @@ export default function HomeSection({ sectionTitle, sectionName, data, loading }
     <section className={`section-${sectionName} container mx-auto p-4`}>
       <div className="section-header flex justify-between mb-2">
         <h1 className='text-yellow-500 dark:text-white text-base sm:text-xl font-bold'>{sectionTitle}</h1>
-        <button className='text-gray-300 dark:text-white text-xs sm:text-md font-bold flex items-center hover:text-yellow-500'>
+        <Link to={to} state={linkState} className='text-gray-300 dark:text-white text-xs sm:text-md font-bold flex items-center hover:text-yellow-500'>
           More See <IoMdArrowDropright className=' text-md' />
-        </button>
+        </Link>
       </div>
 
 

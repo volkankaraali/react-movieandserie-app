@@ -1,45 +1,33 @@
-import React from 'react'
-import {
-    Link,
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from 'react-router-dom'
+// libraries
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-import MostPopularSeries from './MostPopularSeries'
-import SerieDetail from './SerieDetail'
-import Top250Series from './Top250Series'
+// sections
+import MostPopularSeries from '../../sections/Series/MostPopularSeries';
+import Top250Series from '../../sections/Series/Top250Series';
 
 
 function Series() {
+
+    const { state } = useLocation();
+
+
+    // tab = 1 => Most popular, tab = 2 => Top 250
+    const [tab, setTab] = useState(1)
+
+    useEffect(() => state?.tab === 1 ? setTab(1) : setTab(2), [state])
+
+    const handleTab = (tabId) => setTab(tabId);
     return (
-        <>
-
-            {/* <Router>
-                <Switch>
-                    <div className="grid grid-cols-1 sm:grid-cols-12">
-
-                        <div className="sm:col-span-2 bg-gray-100">
-                            <div className="mt-2">
-                                <h3 className="text-base p-0 m-0 text-center">Menu</h3>
-                                <ul className="p-0 mt-1">
-                                    <Link to="/series/top250series" className="no-underline"><li className="text-center text-gray-900 hover:text-white mb-1 bg-yellow-500 ">Top250 </li> </Link>
-                                    <Link to="/series/mostpopularseries" className="bg-yellow-500 no-underline text-white"><li className="text-center text-gray-900 hover:text-white mb-1 bg-yellow-500 ">Most Popular</li> </Link>
-                                </ul>
-                            </div>
-
-                        </div>
-                        <div className="col-span-10">
-                            <Route path="/series" exact component={Top250Series}></Route>
-                            <Route path="/series/top250series" component={Top250Series}></Route>
-                            <Route path="/series/mostpopularseries" component={MostPopularSeries}></Route>
-                            <Route path="/serie/:serie_id" component={SerieDetail}></Route>
-
-                        </div>
-                    </div>
-                </Switch>
-            </Router> */}
-        </>
+        <div className='movies dark:bg-gray-800'>
+            <div className='pt-8 flex container mx-auto p-4 justify-between lg:justify-center lg:space-x-60'>
+                <button onClick={() => handleTab(1)} className={`${tab === 1 ? 'bg-yellow-500 transition-colors ease-in ' : 'bg-white dark:text-black '} py-1 px-2 rounded `}>Most Popular</button>
+                <button onClick={() => handleTab(2)} className={`${tab === 2 ? 'bg-yellow-500 transition-colors ease-in ' : 'bg-white dark:text-black '} py-1 px-2 rounded `}>Top 250</button>
+            </div>
+            {
+                tab === 1 ? <MostPopularSeries /> : <Top250Series />
+            }
+        </div>
     )
 }
 

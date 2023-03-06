@@ -1,24 +1,21 @@
+// libraries
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import {
-    Link,
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from 'react-router-dom';
-import Card from '../../components/Card';
-import usePagination from '../../hooks/usePagination';
+import { useLocation } from 'react-router-dom';
 
-
-import Detail from '../Detail';
-
-import MostPopularMovies from './MostPopularMovies';
-import Top250Movies from './Top250Movies';
+// sections
+import MostPopularMovies from '../../sections/Movies/MostPopularMovies';
+import Top250Movies from '../../sections/Movies/Top250Movies';
 
 function Movies() {
 
+    const { state } = useLocation();
+
     // tab = 1 => Most popular, tab = 2 => Top 250
     const [tab, setTab] = useState(1)
+
+    console.log(state)
+
+    useEffect(() => state?.tab === 1 ? setTab(1) : setTab(2), [state])
 
     const handleTab = (tabId) => setTab(tabId);
 

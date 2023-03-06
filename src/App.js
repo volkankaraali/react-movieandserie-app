@@ -15,11 +15,11 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(getTop250Movies())
-    // dispatch(getMostPopularMovies())
-    // dispatch(getComingSoon())
-    // dispatch(getTop250Series())
-    // dispatch(getMostPopularSeries())
+    dispatch(getTop250Movies())
+    dispatch(getMostPopularMovies())
+    dispatch(getComingSoon())
+    dispatch(getTop250Series())
+    dispatch(getMostPopularSeries())
   }, [])
 
   return (
