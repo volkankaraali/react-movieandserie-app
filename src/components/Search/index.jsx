@@ -8,7 +8,7 @@ import LoadingIcon from '../../constants/icons/LoadingIcon';
 // redux
 import { imdbApiService } from '../../services/imdbService';
 
-function Searchbar() {
+function Search() {
 
 
     const [loading, setLoading] = useState(false);
@@ -88,4 +88,4 @@ function Searchbar() {
     )
 }
 
-export default Searchbar;
+export default Search;
