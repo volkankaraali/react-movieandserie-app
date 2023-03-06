@@ -24,24 +24,6 @@ function App() {
 
   return (
     <>
-      {/* <Router>
-        <div className="">
-
-          <Nav />
-          <main className="" >
-            <Switch>
-              <Route path="/" component={Home} exact></Route>
-              <Route path="/movies/top250movies" component={Movies}></Route>
-              <Route path="/series/top250series" component={Series}></Route>
-              <Route path="/comingsoon" component={ComingSoon}></Route>
-              <Route path="/search/:title" component={Search}></Route>
-              <Route path="/detail/:id" component={Detail}></Route>
-            </Switch>
-            <ScrollUpButton />
-          </main>
-          <Footer />
-        </div>
-      </Router> */}
       <Routes />
     </>
 
