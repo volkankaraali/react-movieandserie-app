@@ -1,10 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import MovieService from "../services/movieService";
+import ImdbApiService from "../services/imdbService";
 
-const MovieContext =createContext();
+const MovieContext = createContext();
 
-export const MovieProvider = ({children}) =>{
-    
+export const MovieProvider = ({ children }) => {
+
     const [comingSoon, setComingSoon] = useState([])
     const [top250Movies, setTop250Movies] = useState([])
     const [mostPopularMovies, setMostPopularMovies] = useState([])
@@ -15,60 +15,60 @@ export const MovieProvider = ({children}) =>{
     const [searchType, setSearchType] = useState("")
 
     const [overRequest, setOverRequest] = useState(false)
-    
-    useEffect(() => {
-        let movieService = new MovieService()
-        movieService.getComingSoon().then(result=>{
-            
-            if(result.data.errorMessage){
-                setOverRequest(true)
-                console.log("over request");
-            }
-            setComingSoon(result.data.items)
-        })
-        
-        movieService.getTop250Movies().then(result=>{
-            if(result.data.errorMessage){
-                setOverRequest(true)
-                console.log("over request");
-            }
-            //console.log(result.data.items);
-            setTop250Movies(result.data.items)
-            
-        })
-        
-        movieService.getMostPopularMovie().then(result=>{
-            if (result.data.errorMessage) {
-                setOverRequest(true)
-                console.log("over request");
-            }
-            setMostPopularMovies(result.data.items)
-        })
 
-        movieService.getTop250Series().then(result=>{
-            if(result.data.errorMessage){
-                setOverRequest(true)
-                console.log("over request");
-            }
-            //console.log(result.data.items);
-            setTop250Series(result.data.items)
-            
-        })
-    
-        movieService.getMostPopularSeries().then(result=>{
-            if(result.data.errorMessage){
-                setOverRequest(true)
-                console.log("over request");
-            }
-            setMostPopularSeries(result.data.items)
-        })
+    // useEffect(() => {
+    //     let movieService = new MovieService()
+    //     movieService.getComingSoon().then(result=>{
 
-    }, [])
+    //         if(result.data.errorMessage){
+    //             setOverRequest(true)
+    //             console.log("over request");
+    //         }
+    //         setComingSoon(result.data.items)
+    //     })
+
+    //     movieService.getTop250Movies().then(result=>{
+    //         if(result.data.errorMessage){
+    //             setOverRequest(true)
+    //             console.log("over request");
+    //         }
+    //         //console.log(result.data.items);
+    //         setTop250Movies(result.data.items)
+
+    //     })
+
+    //     movieService.getMostPopularMovie().then(result=>{
+    //         if (result.data.errorMessage) {
+    //             setOverRequest(true)
+    //             console.log("over request");
+    //         }
+    //         setMostPopularMovies(result.data.items)
+    //     })
+
+    //     movieService.getTop250Series().then(result=>{
+    //         if(result.data.errorMessage){
+    //             setOverRequest(true)
+    //             console.log("over request");
+    //         }
+    //         //console.log(result.data.items);
+    //         setTop250Series(result.data.items)
+
+    //     })
+
+    //     movieService.getMostPopularSeries().then(result=>{
+    //         if(result.data.errorMessage){
+    //             setOverRequest(true)
+    //             console.log("over request");
+    //         }
+    //         setMostPopularSeries(result.data.items)
+    //     })
+
+    // }, [])
 
     //console.log(comingSoon);
     //console.log(top250Movies);
 
-    const values={
+    const values = {
         comingSoon,
         top250Movies,
         mostPopularMovies,
@@ -81,8 +81,8 @@ export const MovieProvider = ({children}) =>{
         overRequest
     }
     return <MovieContext.Provider value={values}> {children}</MovieContext.Provider>
-    
+
 
 }
 
-export const useMovie =() =>useContext(MovieContext);
+export const useMovie = () => useContext(MovieContext);

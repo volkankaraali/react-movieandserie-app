@@ -1,33 +1,32 @@
+// libraries
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
-import './App.css';
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
-import Movies from './components/Movies';
-import Series from './components/Series';
-import Nav from './components/Nav';
-import Home from './components/Home';
+// routes
+import Routes from "./routes";
 
-import 'antd/dist/antd.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// async thunks
+import { getComingSoon, getMostPopularMovies, getMostPopularSeries, getTop250Movies, getTop250Series } from "./redux/extraReducers";
 
-import { MovieProvider } from './context/MovieContext';
-import ComingSoon from './components/ComingSoon';
-
-import Search from './components/Search';
-import Footer from './components/Footer';
-import ScrollUpButton from './components/ScrollUpButton';
-import MovieOrSerieDetail from './components/MovieOrSerieDetails';
 
 function App() {
+
+  // asyncThunk calls
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTop250Movies())
+    dispatch(getMostPopularMovies())
+    dispatch(getComingSoon())
+    dispatch(getTop250Series())
+    dispatch(getMostPopularSeries())
+  }, [])
+
   return (
-    <MovieProvider>
-      <Router>
+    <>
+      {/* <Router>
         <div className="">
-          
+
           <Nav />
           <main className="" >
             <Switch>
@@ -36,14 +35,17 @@ function App() {
               <Route path="/series/top250series" component={Series}></Route>
               <Route path="/comingsoon" component={ComingSoon}></Route>
               <Route path="/search/:title" component={Search}></Route>
-              <Route path="/detail/:id" component={MovieOrSerieDetail}></Route>
+              <Route path="/detail/:id" component={Detail}></Route>
             </Switch>
             <ScrollUpButton />
           </main>
           <Footer />
         </div>
-      </Router>
-    </MovieProvider>
+      </Router> */}
+      <Routes />
+    </>
+
+
   );
 }
 
