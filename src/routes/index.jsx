@@ -20,21 +20,17 @@ export default function Routes() {
 
         <Route path='movies'>
           <Route index element={<Movies />} />
-          <Route path='top250' element={<div>250</div>} />
-          <Route path='most-popular' element={<div>popular</div>} />
         </Route>
 
         <Route path='series'>
           <Route index element={<Series />} />
-          <Route path='top250' element={<div>250</div>} />
-          <Route path='most-popular' element={<div>popular</div>} />
         </Route>
 
         <Route path='coming-soon' element={<ComingSoon />} />
 
         <Route path='detail/:slug' element={<Detail />} />
 
-        <Route path='*' element={<div>no found</div>} />
+        <Route path='*' element={<div>no found.</div>} />
       </Route>
     </RRDRoutes>
   )
